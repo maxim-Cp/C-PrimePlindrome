@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
+void prime(int start, int end);
+bool palindrome(int num);
+int revers(int num);
+//void print();
+int main()
+{
+	
+	int start, end;
+	/*print();*/
+	printf("ENter your starting number: \n");
+	scanf_s("%d", &start);
+	printf("ENter your End number: \n");
+	scanf_s("%d", &end);
+	prime(start, end);
+	
+}
+
+//void print()
+//{
+//	printf("Enter 2 numbers start and end\n test if btw 2 numbers all the Plindrome Prime\n");
+//	printf("Plindrome Number is Number where you can read both ways for example 121(Plindrome)\nPlindrome NUmber where 123(NOT Pilndrome) isn't\n");
+//	printf("Prime NUmber is number that can only be devided by itself or by 1 the lowest Prime number is (2)\n");
+//}
+void prime(int start, int end)
+{
+	int i, j;
+	bool flag;
+	for (i = start; i <= end; i++)
+	{
+		flag = palindrome(i);
+		for (j = 2; j <= i / 2 && flag; j++)
+		{
+			if (i % j == 0)
+				flag = false;
+		}
+		if (flag && i >= 2)
+			printf("%5d", i);
+	}
+}
+/*set flag if number is equal or not*/
+bool palindrome(int num)
+{
+	if (num == revers(num))
+		return true;
+	return false;
+}
+/*revers number useing recursion*/
+int revers(int num)
+{
+	//log10 set the length of number
+	return (num <= 9) ? num : revers(num / 10) + (num % 10) * pow(10, floor(log10(num)));
+}
